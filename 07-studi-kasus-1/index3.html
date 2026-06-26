@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelas Belajar - Bimbingan Belajar Terbaik</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ================= VARIABLES ================= */
+      :root {
+        --primary-blue: #1d4ed8;
+        --primary-light: #eff6ff;
+        --accent-yellow: #fbbf24;
+        --text-dark: #1e293b;
+        --text-gray: #64748b;
+        --bg-light: #f8fafc;
+        --white: #ffffff;
+        --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        --border-radius: 12px;
+      }
+
+      /* ================= RESET ================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        color: var(--text-dark);
+        background-color: var(--white);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ================= ANIMATION CLASSES ================= */
+      /* Animasi scroll awal disembunyikan */
+      .animate {
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .fade-up {
+        transform: translateY(40px);
+      }
+      .fade-left {
+        transform: translateX(40px);
+      }
+      .fade-right {
+        transform: translateX(-40px);
+      }
+      .zoom-in {
+        transform: scale(0.9);
+      }
+
+      /* Class untuk memunculkan elemen */
+      .animate.visible {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+      }
+
+      /* Delay berurutan untuk grid/kartu */
+      .delay-100 {
+        transition-delay: 0.1s;
+      }
+      .delay-200 {
+        transition-delay: 0.2s;
+      }
+      .delay-300 {
+        transition-delay: 0.3s;
+      }
+      .delay-400 {
+        transition-delay: 0.4s;
+      }
+
+      /* Animasi Floating (mengambang terus menerus) */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      /* ================= BUTTONS ================= */
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-yellow {
+        background-color: var(--accent-yellow);
+        color: var(--text-dark);
+      }
+      .btn-yellow:hover {
+        background-color: #f59e0b;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px rgba(251, 191, 36, 0.3);
+      }
+
+      .btn-blue {
+        background-color: var(--primary-blue);
+        color: var(--white);
+      }
+      .btn-blue:hover {
+        background-color: #1e40af;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px rgba(29, 78, 216, 0.3);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--text-dark);
+        border: 1px solid #cbd5e1;
+      }
+      .btn-outline:hover {
+        background-color: var(--bg-light);
+        transform: translateY(-3px);
+      }
+
+      /* ================= NAVBAR ================= */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-sm);
+        z-index: 1000;
+      }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--primary-blue);
+      }
+      .logo i {
+        color: var(--accent-yellow);
+        font-size: 28px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 25px;
+      }
+      .nav-links a {
+        color: var(--text-gray);
+        font-weight: 500;
+        font-size: 15px;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary-blue);
+      }
+
+      /* ================= HERO SECTION ================= */
+      .hero {
+        padding: 160px 20px 80px;
+        background: linear-gradient(to right, #f8fafc, #eff6ff);
+        position: relative;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+      }
+      .hero-text {
+        flex: 1;
+      }
+
+      .tagline {
+        color: var(--primary-blue);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .tagline::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-blue);
+      }
+      .hero-text h1 {
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+      }
+      .hero-text p {
+        color: var(--text-gray);
+        font-size: 16px;
+        margin-bottom: 35px;
+        max-width: 500px;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .hero-image {
+        flex: 1;
+        position: relative;
+      }
+      .hero-image img {
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Implementasi animasi float pada badge */
+      .experience-badge {
+        position: absolute;
+        bottom: -20px;
+        left: -30px;
+        background-color: var(--primary-blue);
+        color: white;
+        padding: 20px 25px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        animation: float 4s ease-in-out infinite; /* ANIMASI MENGAMBANG */
+      }
+      .experience-badge h3 {
+        font-size: 28px;
+        font-weight: 800;
+      }
+      .experience-badge p {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      /* ================= SECTION TITLES ================= */
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      .section-subtitle {
+        color: var(--primary-blue);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+      }
+      .section-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text-dark);
+      }
+
+      /* ================= FEATURES ================= */
+      .features {
+        padding: 80px 20px;
+        background-color: var(--white);
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+      .feature-card {
+        padding: 30px 20px;
+        background: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid #f1f5f9;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-blue);
+      }
+      .icon-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--primary-light);
+        color: var(--primary-blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        transition: 0.3s;
+      }
+      .feature-card:hover .icon-box {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        transform: scale(1.1);
+      }
+      .feature-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .feature-card p {
+        font-size: 14px;
+        color: var(--text-gray);
+      }
+
+      /* ================= PROGRAMS ================= */
+      .programs {
+        padding: 80px 20px;
+        background-color: var(--bg-light);
+      }
+      .program-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+      .program-card {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+      }
+      .program-card:hover .program-img {
+        transform: scale(1.05);
+      }
+      .img-wrapper {
+        overflow: hidden;
+        width: 100%;
+        height: 180px;
+      }
+      .program-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .program-info {
+        padding: 25px;
+      }
+      .icon-badge {
+        width: 40px;
+        height: 40px;
+        background-color: var(--primary-blue);
+        color: white;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -45px;
+        position: relative;
+        margin-bottom: 15px;
+        border: 3px solid white;
+        z-index: 2;
+      }
+      .program-info h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .program-info p {
+        font-size: 14px;
+        color: var(--text-gray);
+        margin-bottom: 15px;
+      }
+      .link-blue {
+        color: var(--primary-blue);
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.3s;
+      }
+      .link-blue i {
+        transition: transform 0.3s;
+      }
+      .link-blue:hover i {
+        transform: translateX(5px);
+      }
+
+      /* ================= STATS BAR ================= */
+      .stats {
+        background-color: var(--primary-blue);
+        color: white;
+        padding: 50px 20px;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .stat-item i {
+        font-size: 32px;
+        margin-bottom: 15px;
+        opacity: 0.9;
+      }
+      .stat-item h2 {
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 5px;
+      }
+      .stat-item h2 span {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      .stat-item p {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      /* ================= TEACHERS ================= */
+      .teachers {
+        padding: 80px 20px;
+      }
+      .teacher-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+      .teacher-card {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+        text-align: center;
+        padding: 30px 20px;
+        border: 1px solid #f1f5f9;
+        transition: transform 0.3s;
+      }
+      .teacher-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary-blue);
+      }
+      .teacher-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 20px;
+        border: 4px solid var(--primary-light);
+      }
+      .teacher-card h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      .teacher-card p {
+        font-size: 14px;
+        color: var(--text-gray);
+        margin-bottom: 15px;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      .social-icons a {
+        color: var(--primary-blue);
+        background: var(--primary-light);
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 0.3s;
+      }
+      .social-icons a:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: rotate(360deg);
+      } /* Animasi putar ikon */
+
+      /* ================= CTA BANNER ================= */
+      .cta {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto 80px;
+        background: var(--primary-blue);
+        border-radius: 24px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-text {
+        padding-left: 40px;
+        z-index: 2;
+        max-width: 500px;
+      }
+      .cta-text h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+      .cta-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 120%;
+        z-index: 1;
+        opacity: 0.8;
+        transition: transform 0.5s;
+      }
+      .cta:hover .cta-img {
+        transform: scale(1.05);
+      }
+
+      /* ================= FOOTER ================= */
+      footer {
+        background-color: #0f172a;
+        color: #94a3b8;
+        padding: 80px 20px 20px;
+      }
+      .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 50px;
+        border-bottom: 1px solid #1e293b;
+        padding-bottom: 40px;
+        margin-bottom: 20px;
+      }
+      .footer-logo {
+        color: white;
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .footer-logo i {
+        color: var(--accent-yellow);
+      }
+      .footer-col h4 {
+        color: white;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      .footer-col ul li {
+        margin-bottom: 12px;
+      }
+      .footer-col ul li a {
+        color: #94a3b8;
+        transition: color 0.3s;
+        display: inline-block;
+      }
+      .footer-col ul li a:hover {
+        color: var(--accent-yellow);
+        transform: translateX(5px);
+      } /* Animasi panah navigasi footer */
+      .copyright {
+        text-align: center;
+        font-size: 14px;
+      }
+
+      @media (max-width: 992px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .tagline {
+          justify-content: center;
+        }
+        .hero-text p {
+          margin: 0 auto 30px;
+        }
+        .hero-buttons {
+          justify-content: center;
+        }
+        .features-grid,
+        .program-grid,
+        .stats-grid,
+        .teacher-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
+        .features-grid,
+        .program-grid,
+        .stats-grid,
+        .teacher-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .cta {
+          flex-direction: column;
+          text-align: center;
+          padding: 40px 20px;
+        }
+        .cta-text {
+          padding: 0;
+          margin-bottom: 20px;
+        }
+        .cta-img {
+          position: relative;
+          height: 200px;
+        }
+      }
+      /* ================= POPUP PROMO ================= */
+
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.35s;
+        z-index: 9999;
+        padding: 20px;
+      }
+
+      .popup-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .popup-box {
+        width: 900px;
+        max-width: 95%;
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        animation: popupScale 0.35s ease;
+      }
+
+      @keyframes popupScale {
+        from {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .popup-image {
+        width: 45%;
+        object-fit: cover;
+      }
+
+      .popup-content {
+        padding: 40px;
+        flex: 1;
+      }
+
+      .popup-badge {
+        display: inline-block;
+        background: #fbbf24;
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .popup-content h2 {
+        font-size: 34px;
+        margin-bottom: 15px;
+      }
+
+      .popup-content p {
+        color: #64748b;
+        margin-bottom: 25px;
+      }
+
+      .popup-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .popup-close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        font-size: 18px;
+      }
+
+      .popup-close:hover {
+        background: #ef4444;
+        color: #fff;
+      }
+
+      .dont-show {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      @media (max-width: 768px) {
+        .popup-box {
+          flex-direction: column;
+        }
+
+        .popup-image {
+          width: 100%;
+          height: 220px;
+        }
+
+        .popup-content {
+          padding: 25px;
+        }
+
+        .popup-content h2 {
+          font-size: 26px;
+        }
+
+        .popup-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <i class="fa-solid fa-book-open-reader"></i> Kelas Belajar
+        </div>
+        <nav class="nav-links">
+          <a href="#" class="active">Beranda</a>
+          <a href="#">Program</a>
+          <a href="#">Pengajar</a>
+          <a href="#">Prestasi</a>
+          <a href="#">Artikel</a>
+          <a href="#">Tentang Kami</a>
+        </nav>
+        <a href="#" class="btn btn-blue"
+          >Daftar Sekarang <i class="fa-solid fa-arrow-right"></i
+        ></a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text animate fade-right">
+          <div class="tagline">Bimbingan Belajar Terbaik</div>
+          <h1>Belajar Lebih Pintar, Raih Prestasi Terbaikmu</h1>
+          <p>
+            Kami membantu siswa SD, SMP, SMA hingga persiapan UTBK meraih mimpi
+            melalui metode belajar efektif bersama pengajar berpengalaman.
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-yellow"
+              >Daftar Gratis <i class="fa-solid fa-arrow-right"></i
+            ></a>
+            <a href="#" class="btn btn-outline">Lihat Program</a>
+          </div>
+        </div>
+        <div class="hero-image animate fade-left">
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+            alt="Siswa Belajar"
+          />
+          <div class="experience-badge">
+            <h3>10+</h3>
+            <p>Tahun Pengalaman</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <div class="section-header animate fade-up">
+          <div class="section-subtitle">Keunggulan Kami</div>
+          <h2 class="section-title">Mengapa Memilih Kelas Belajar?</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card animate fade-up delay-100">
+            <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
+            <h3>Guru Berpengalaman</h3>
+            <p>Pengajar profesional dan ahli di bidangnya masing-masing.</p>
+          </div>
+          <div class="feature-card animate fade-up delay-200">
+            <div class="icon-box"><i class="fa-solid fa-book"></i></div>
+            <h3>Modul Terupdate</h3>
+            <p>Materi selalu diperbarui sesuai kurikulum terbaru nasional.</p>
+          </div>
+          <div class="feature-card animate fade-up delay-300">
+            <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>Monitoring Orang Tua</h3>
+            <p>Laporan perkembangan belajar siswa secara berkala.</p>
+          </div>
+          <div class="feature-card animate fade-up delay-400">
+            <div class="icon-box"><i class="fa-solid fa-laptop"></i></div>
+            <h3>Kelas Online & Offline</h3>
+            <p>Fleksibel memilih kelas sesuai kebutuhan Anda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs">
+      <div class="container">
+        <div class="section-header animate fade-up">
+          <div class="section-subtitle">Program Unggulan</div>
+          <h2 class="section-title">Program Belajar Kami</h2>
+        </div>
+        <div class="program-grid">
+          <div class="program-card animate fade-up delay-100">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80"
+                alt="SD"
+                class="program-img"
+              />
+            </div>
+            <div class="program-info">
+              <div class="icon-badge"><i class="fa-solid fa-child"></i></div>
+              <h3>SD</h3>
+              <p>Kelas 1 - 6</p>
+              <a href="#" class="link-blue"
+                >Lihat Detail <i class="fa-solid fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+          <div class="program-card animate fade-up delay-200">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=500&q=80"
+                alt="SMP"
+                class="program-img"
+              />
+            </div>
+            <div class="program-info">
+              <div class="icon-badge">
+                <i class="fa-solid fa-user-graduate"></i>
+              </div>
+              <h3>SMP</h3>
+              <p>Kelas 7 - 9</p>
+              <a href="#" class="link-blue"
+                >Lihat Detail <i class="fa-solid fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+          <div class="program-card animate fade-up delay-300">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=500&q=80"
+                alt="SMA"
+                class="program-img"
+              />
+            </div>
+            <div class="program-info">
+              <div class="icon-badge"><i class="fa-solid fa-school"></i></div>
+              <h3>SMA</h3>
+              <p>IPA & IPS</p>
+              <a href="#" class="link-blue"
+                >Lihat Detail <i class="fa-solid fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+          <div class="program-card animate fade-up delay-400">
+            <div class="img-wrapper">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80"
+                alt="UTBK"
+                class="program-img"
+              />
+            </div>
+            <div class="program-info">
+              <div class="icon-badge">
+                <i class="fa-solid fa-university"></i>
+              </div>
+              <h3>UTBK</h3>
+              <p>Intensif PTN</p>
+              <a href="#" class="link-blue"
+                >Lihat Detail <i class="fa-solid fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" id="stats">
+      <div class="stats-grid">
+        <div class="stat-item animate fade-up delay-100">
+          <i class="fa-solid fa-users"></i>
+          <h2><span class="counter" data-target="5000">0</span>+</h2>
+          <p>Siswa Aktif</p>
+        </div>
+        <div class="stat-item animate fade-up delay-200">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <h2><span class="counter" data-target="200">0</span>+</h2>
+          <p>Pengajar Profesional</p>
+        </div>
+        <div class="stat-item animate fade-up delay-300">
+          <i class="fa-solid fa-check-circle"></i>
+          <h2><span class="counter" data-target="95">0</span>%</h2>
+          <p>Tingkat Kelulusan</p>
+        </div>
+        <div class="stat-item animate fade-up delay-400">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <h2><span class="counter" data-target="15">0</span>+</h2>
+          <p>Cabang di Indonesia</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="teachers">
+      <div class="container">
+        <div class="section-header animate fade-up">
+          <div class="section-subtitle">Pengajar Profesional</div>
+          <h2 class="section-title">Belajar Bersama Ahli di Bidangnya</h2>
+        </div>
+        <div class="teacher-grid">
+          <div class="teacher-card animate fade-up delay-100">
+            <img
+              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=300&q=80"
+              alt="Budi"
+              class="teacher-img"
+            />
+            <h3>Budi Santoso, M.Pd.</h3>
+            <p>Matematika</p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="teacher-card animate fade-up delay-200">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"
+              alt="Sarah"
+              class="teacher-img"
+            />
+            <h3>Sarah Aulia, M.Si.</h3>
+            <p>Fisika</p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="teacher-card animate fade-up delay-300">
+            <img
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+              alt="Ahmad"
+              class="teacher-img"
+            />
+            <h3>Ahmad Fauzi, S.Pd.</h3>
+            <p>Bahasa Inggris</p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="teacher-card animate fade-up delay-400">
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80"
+              alt="Rina"
+              class="teacher-img"
+            />
+            <h3>Rina Kartika, M.Pd.</h3>
+            <p>Kimia</p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta animate zoom-in">
+      <div class="cta-text">
+        <h2>SIAP MENINGKATKAN NILAI DAN PRESTASI?</h2>
+        <p style="margin-bottom: 25px; opacity: 0.9">
+          Bergabunglah bersama ribuan siswa lainnya dan raih masa depan
+          terbaikmu bersama Kelas Belajar.
+        </p>
+        <a href="#" class="btn btn-yellow"
+          >Daftar Sekarang <i class="fa-solid fa-arrow-right"></i
+        ></a>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+        alt="Students Happy"
+        class="cta-img"
+        style="border-radius: 50% 0 0 50%"
+      />
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col animate fade-up delay-100">
+          <div class="footer-logo">
+            <i class="fa-solid fa-book-open-reader"></i> KELAS BELAJAR
+          </div>
+          <p style="margin-bottom: 20px">
+            Lembaga bimbingan belajar terpercaya untuk membantu siswa meraih
+            prestasi terbaik dan masa depan gemilang.
+          </p>
+        </div>
+        <div class="footer-col animate fade-up delay-200">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Program</a></li>
+            <li><a href="#">Pengajar</a></li>
+            <li><a href="#">Prestasi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col animate fade-up delay-300">
+          <h4>Program</h4>
+          <ul>
+            <li><a href="#">Program SD</a></li>
+            <li><a href="#">Program SMP</a></li>
+            <li><a href="#">Program SMA</a></li>
+            <li><a href="#">Program UTBK</a></li>
+          </ul>
+        </div>
+        <div class="footer-col animate fade-up delay-400">
+          <h4>Kontak Kami</h4>
+          <ul>
+            <li>
+              <i class="fa-solid fa-location-dot" style="width: 20px"></i> Jl.
+              Pendidikan 123
+            </li>
+            <li>
+              <i class="fa-brands fa-whatsapp" style="width: 20px"></i>
+              0812-3456-7890
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 Kelas Belajar. All rights reserved.</p>
+      </div>
+    </footer>
+    <!-- ================= POPUP IKLAN ================= -->
+    <div id="promoPopup" class="popup-overlay">
+      <div class="popup-box">
+        <button class="popup-close" id="closePopup">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <img
+          src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80"
+          alt="Promo"
+          class="popup-image"
+        />
+
+        <div class="popup-content">
+          <span class="popup-badge"> 🎉 PROMO TERBATAS </span>
+
+          <h2>Diskon Hingga 50%</h2>
+
+          <p>
+            Daftar sekarang dan dapatkan potongan biaya pendaftaran serta kelas
+            percobaan GRATIS.
+          </p>
+
+          <div class="popup-buttons">
+            <a href="#" class="btn btn-yellow"> Daftar Sekarang </a>
+
+            <button class="btn btn-outline" id="laterBtn">Nanti Saja</button>
+          </div>
+
+          <label class="dont-show">
+            <input type="checkbox" id="dontShowAgain" />
+            Jangan tampilkan lagi
+          </label>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. SCROLL REVEAL ANIMATION (Fade Up, Fade Left/Right, Zoom)
+        const animatedElements = document.querySelectorAll(".animate");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15, // Animasi mulai saat elemen 15% masuk layar
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target); // Animasi cukup diputar 1x
+            }
+          });
+        }, observerOptions);
+
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // 2. NUMBER COUNTER ANIMATION (Bagian Statistik)
+        const counters = document.querySelectorAll(".counter");
+        let hasCounted = false;
+
+        const statsSection = document.getElementById("stats");
+
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting && !hasCounted) {
+              hasCounted = true;
+
+              counters.forEach((counter) => {
+                const target = +counter.getAttribute("data-target");
+                const duration = 2000; // Durasi animasi dalam milidetik (2 detik)
+                const increment = target / (duration / 16); // Berdasarkan frame rate ~60fps
+
+                let current = 0;
+                const updateCounter = () => {
+                  current += increment;
+                  if (current < target) {
+                    // Bulatkan angka dan tampilkan (tambah titik jika ribuan)
+                    counter.innerText =
+                      Math.ceil(current).toLocaleString("id-ID");
+                    requestAnimationFrame(updateCounter);
+                  } else {
+                    counter.innerText = target.toLocaleString("id-ID");
+                  }
+                };
+                updateCounter();
+              });
+            }
+          },
+          { threshold: 0.5 },
+        ); // Mulai hitung saat 50% section stats terlihat
+
+        if (statsSection) {
+          counterObserver.observe(statsSection);
+        }
+        /* ================= POPUP PROMO ================= */
+
+        const popup = document.getElementById("promoPopup");
+        const closePopup = document.getElementById("closePopup");
+        const laterBtn = document.getElementById("laterBtn");
+        const dontShow = document.getElementById("dontShowAgain");
+
+        // tampilkan popup jika belum pernah disembunyikan
+        if (!localStorage.getItem("hidePromo")) {
+          setTimeout(() => {
+            popup.classList.add("show");
+          }, 1000); // muncul setelah 1 detik
+        }
+
+        // fungsi tutup popup
+        function hidePopup() {
+          if (dontShow.checked) {
+            localStorage.setItem("hidePromo", "true");
+          }
+
+          popup.classList.remove("show");
+        }
+
+        closePopup.addEventListener("click", hidePopup);
+
+        laterBtn.addEventListener("click", hidePopup);
+
+        // klik area gelap
+        popup.addEventListener("click", function (e) {
+          if (e.target === popup) {
+            hidePopup();
+          }
+        });
+
+        // tombol ESC
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            hidePopup();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WPU StreamFest 2026 - Neon Nights</title>
+
+    <!-- Import Font 'Plus Jakarta Sans' agar identik dengan gaya web Pemprov/JAKI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================
+         TEMA DESAIN: JAKI STYLE (Modern, Clean, Yellow Accent)
+         ========================================= */
+
+      :root {
+        --primary-yellow: #ffc700; /* Kuning khas JAKI */
+        --dark-text: #1e2329;
+        --gray-text: #6b7280;
+        --bg-light: #f9fafb;
+        --white: #ffffff;
+        --soft-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--white);
+        color: var(--dark-text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      hr {
+        display: none;
+      }
+
+      /* =========================================
+         HEADER & NAV (Gaya Bersih melayang)
+         ========================================= */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 8%;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      header h1 {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--dark-text);
+        letter-spacing: -0.5px;
+      }
+
+      header h1 span {
+        color: var(--primary-yellow);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--gray-text);
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--dark-text);
+      }
+
+      /* Tombol khusus di Navbar */
+      .nav-btn {
+        background-color: var(--primary-yellow);
+        color: var(--dark-text) !important;
+        padding: 10px 24px;
+        border-radius: 50px; /* Bentuk Pill khas UI modern */
+        font-weight: 700;
+      }
+      .nav-btn:hover {
+        background-color: #e6b300;
+      }
+
+      /* =========================================
+         SECTIONS & TYPOGRAPHY
+         ========================================= */
+      section {
+        padding: 100px 8% 80px;
+        background-color: var(--white);
+        overflow: hidden;
+      }
+
+      section:nth-of-type(even) {
+        background-color: var(--bg-light);
+      }
+
+      section h3 {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--dark-text);
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+        text-align: left; /* Rata kiri khas layout modern */
+      }
+
+      .section-desc {
+        color: var(--gray-text);
+        font-size: 18px;
+        max-width: 600px;
+        margin-bottom: 50px;
+      }
+
+      /* =========================================
+         HERO SECTION (Split Layout)
+         ========================================= */
+      #home {
+        margin-top: 60px;
+        padding: 120px 8% 100px;
+        background: linear-gradient(135deg, #fffdf5 0%, #ffffff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        position: relative;
+      }
+
+      /* Aksesoris background blob/lingkaran kuning */
+      #home::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: var(--primary-yellow);
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 0;
+      }
+
+      .hero-content {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-image {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-image img {
+        width: 100%;
+        border-radius: 30px;
+        box-shadow: var(--soft-shadow);
+      }
+
+      .badge {
+        display: inline-block;
+        background-color: rgba(255, 199, 0, 0.2);
+        color: #b28c00;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      #home h2 {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -2px;
+        color: var(--dark-text);
+      }
+
+      #home p {
+        font-size: 18px;
+        color: var(--gray-text);
+        margin-bottom: 40px;
+        max-width: 480px;
+      }
+
+      #home a {
+        display: inline-block;
+        background-color: var(--primary-yellow);
+        color: var(--dark-text);
+        padding: 18px 40px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        border-radius: 50px; /* Bentuk Pill */
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        box-shadow: 0 10px 20px rgba(255, 199, 0, 0.3);
+      }
+
+      #home a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(255, 199, 0, 0.4);
+      }
+
+      /* =========================================
+         ABOUT SECTION
+         ========================================= */
+      #about article {
+        background: var(--white);
+        padding: 50px;
+        border-radius: 24px;
+        box-shadow: var(--soft-shadow);
+      }
+
+      #about h4 {
+        color: var(--dark-text);
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      #about p {
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: var(--gray-text);
+        line-height: 1.8;
+      }
+
+      /* =========================================
+         SLIDER STYLING (Lineup & Gallery)
+         ========================================= */
+      .slider-container {
+        position: relative;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .slider {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding: 20px 5px;
+        scroll-behavior: smooth;
+      }
+
+      .slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider li {
+        list-style: none;
+        flex: 0 0 320px;
+        scroll-snap-align: start;
+      }
+
+      .slider figure {
+        background: var(--white);
+        border-radius: 24px; /* Sudut lebih melengkung ala App */
+        overflow: hidden;
+        box-shadow: var(--soft-shadow);
+        border: 1px solid #f3f4f6;
+        transition: transform 0.3s ease;
+        height: 100%;
+      }
+
+      .slider figure:hover {
+        transform: translateY(-8px);
+      }
+
+      .slider img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .slider figcaption {
+        padding: 24px;
+      }
+
+      .slider figcaption h4 {
+        color: var(--dark-text);
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .slider figcaption p {
+        font-size: 14px;
+        color: var(--gray-text);
+        font-weight: 500;
+      }
+
+      .slider-btn {
+        background-color: var(--white);
+        color: var(--dark-text);
+        border: 1px solid #e5e7eb;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 10;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slider-btn:hover {
+        background-color: var(--primary-yellow);
+        border-color: var(--primary-yellow);
+      }
+      .slider-btn.prev {
+        left: -25px;
+      }
+      .slider-btn.next {
+        right: -25px;
+      }
+
+      /* =========================================
+         SCHEDULE SECTION (Clean App List Style)
+         ========================================= */
+      #schedule table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: var(--white);
+        border-radius: 24px;
+        box-shadow: var(--soft-shadow);
+        overflow: hidden;
+      }
+
+      #schedule th {
+        background-color: var(--bg-light);
+        color: var(--gray-text);
+        padding: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      #schedule td {
+        padding: 20px;
+        border-bottom: 1px solid #f3f4f6;
+        color: var(--dark-text);
+        font-weight: 500;
+      }
+
+      #schedule tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Baris penanda hari dibuat seperti Header Kategori di Aplikasi */
+      #schedule tr td[colspan="3"] {
+        background-color: #fffdf5;
+        color: var(--dark-text);
+        font-weight: 800;
+        font-size: 18px;
+        padding-top: 30px;
+      }
+
+      #schedule tr td[colspan="2"] {
+        color: #9ca3af;
+        font-weight: 400;
+      }
+
+      /* Badge Stage bergaya JAKI */
+      .stage-badge {
+        background-color: #f3f4f6;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--gray-text);
+        font-weight: 600;
+      }
+
+      /* =========================================
+         TICKETS SECTION (Modern Form UI)
+         ========================================= */
+      #tickets form {
+        background: var(--white);
+        padding: 50px;
+        border-radius: 24px;
+        box-shadow: var(--soft-shadow);
+        border: 1px solid #e5e7eb;
+      }
+
+      #tickets form label {
+        display: block;
+        font-weight: 600;
+        color: var(--dark-text);
+        margin-top: 24px;
+        margin-bottom: 8px;
+        font-size: 15px;
+      }
+
+      #tickets input[type="text"],
+      #tickets input[type="email"],
+      #tickets input[type="tel"],
+      #tickets input[type="number"] {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid #f3f4f6;
+        border-radius: 12px;
+        font-size: 15px;
+        background-color: var(--bg-light);
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      #tickets input:focus {
+        border-color: var(--primary-yellow);
+        background-color: var(--white);
+        box-shadow: 0 0 0 4px rgba(255, 199, 0, 0.1);
+      }
+
+      /* Styling Checkbox & Radio Button modern */
+      .radio-group,
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .radio-item,
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        background: var(--bg-light);
+        padding: 14px 20px;
+        border-radius: 12px;
+        border: 2px solid #f3f4f6;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .radio-item:hover,
+      .checkbox-item:hover {
+        border-color: #e5e7eb;
+      }
+
+      #tickets input[type="radio"],
+      #tickets input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+        accent-color: var(--primary-yellow);
+      }
+
+      #tickets input[type="radio"] + label,
+      #tickets input[type="checkbox"] + label {
+        margin: 0;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--dark-text);
+      }
+
+      #tickets button {
+        display: block;
+        width: 100%;
+        background-color: var(--primary-yellow);
+        color: var(--dark-text);
+        border: none;
+        padding: 20px;
+        font-size: 16px;
+        font-weight: 800;
+        border-radius: 16px;
+        margin-top: 40px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      #tickets button:hover {
+        background-color: #e6b300;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 199, 0, 0.2);
+      }
+
+      /* =========================================
+         FOOTER
+         ========================================= */
+      footer {
+        background-color: #111827; /* Abu-abu sangat gelap hampir hitam */
+        color: #9ca3af;
+        padding: 60px 8% 40px;
+        font-size: 15px;
+        text-align: center;
+      }
+
+      footer p {
+        margin-bottom: 15px;
+      }
+
+      footer a {
+        color: var(--primary-yellow);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* =========================================
+         ANIMASI
+         ========================================= */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 900px) {
+        #home {
+          flex-direction: column-reverse;
+          text-align: center;
+          padding-top: 150px;
+        }
+        .hero-image {
+          width: 80%;
+        }
+        section h3 {
+          text-align: center;
+        }
+        .section-desc {
+          text-align: center;
+          margin: 0 auto 50px;
+        }
+        nav ul {
+          display: none;
+        } /* Sembunyikan menu di mobile untuk kesederhanaan demo */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 1. Header dan navigation -->
+    <header>
+      <h1>WPU<span>StreamFest</span></h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#lineup">Lineup</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#tickets" class="nav-btn">Get Tickets</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 2. Konten utama -->
+    <main>
+      <!-- 2.1 Hero Section Home -->
+      <section id="home">
+        <div class="hero-content fade-up">
+          <div class="badge">Edisi 2026 🚀</div>
+          <h2>Neon Nights Music Festival.</h2>
+          <p>
+            Rasakan pengalaman 3 hari penuh warna bersama 6 musisi top
+            Indonesia. Musik tanpa batas, gaya Gen Z.
+          </p>
+          <a href="#tickets">Pesan Tiket Sekarang</a>
+        </div>
+        <div class="hero-image fade-up">
+          <img
+            src="https://images.unsplash.com/photo-1540039155733-d7696d4eb49e?auto=format&fit=crop&w=800&q=80"
+            alt="Concert Crowd"
+          />
+        </div>
+      </section>
+
+      <!-- 2.2 Section About -->
+      <section id="about">
+        <div class="fade-up">
+          <h3>Tentang Festival</h3>
+          <p class="section-desc">
+            Menyatukan musik, teknologi, dan kepedulian lingkungan dalam satu
+            wadah interaktif.
+          </p>
+          <article>
+            <h4>Apa itu WPU StreamFest?</h4>
+            <p>
+              WPU StreamFest 2026 adalah festival musik yang menggabungkan
+              konsep <i>neon nights</i> dengan tema gaya hidup digital terkini.
+              Dirancang khusus untuk menghadirkan suasana menyala dengan cahaya
+              neon menawan, namun tetap menjaga komitmen ekosistem hijau
+              (eco-friendly).
+            </p>
+            <p>
+              Sama seperti kemudahan aplikasi modern, festival ini menggunakan
+              sistem
+              <b>100% Cashless Payment</b>. Tersedia juga ragam hiburan
+              interaktif dan ruang komunitas. Dengan konsep yang terintegrasi,
+              WPU StreamFest siap menjadi kiblat festival musik masa depan.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 2.3 Section Lineup (SLIDER) -->
+      <section id="lineup">
+        <div class="fade-up">
+          <h3>Lineup Artis</h3>
+          <p class="section-desc">
+            Musisi-musisi tanah air yang siap menemani malam terangmu.
+          </p>
+
+          <div class="slider-container">
+            <button
+              class="slider-btn prev"
+              onclick="scrollSlider('lineup-slider', -344)"
+            >
+              &#10094;
+            </button>
+            <ul class="slider" id="lineup-slider">
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=500&q=80"
+                    alt="Hindia"
+                  />
+                  <figcaption>
+                    <h4>Hindia</h4>
+                    <p>Indie / Alternative • Day 1</p>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1520627685655-322119eb45a4?auto=format&fit=crop&w=500&q=80"
+                    alt="Bernadya"
+                  />
+                  <figcaption>
+                    <h4>Bernadya</h4>
+                    <p>Pop • Day 2</p>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80"
+                    alt="Pamungkas"
+                  />
+                  <figcaption>
+                    <h4>Pamungkas</h4>
+                    <p>Indie / Alternative • Day 2</p>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80"
+                    alt="Juice Luicy"
+                  />
+                  <figcaption>
+                    <h4>Juice Luicy</h4>
+                    <p>Indie / Alternative • Day 2</p>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5f924?auto=format&fit=crop&w=500&q=80"
+                    alt="Nadin Amizah"
+                  />
+                  <figcaption>
+                    <h4>Nadin Amizah</h4>
+                    <p>Pop • Day 3</p>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1540039155733-d7696d4eb49e?auto=format&fit=crop&w=500&q=80"
+                    alt="Feast"
+                  />
+                  <figcaption>
+                    <h4>Feast</h4>
+                    <p>Pop / Rock • Day 3</p>
+                  </figcaption>
+                </figure>
+              </li>
+            </ul>
+            <button
+              class="slider-btn next"
+              onclick="scrollSlider('lineup-slider', 344)"
+            >
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2.4 Section Schedule -->
+      <section id="schedule">
+        <div class="fade-up">
+          <h3>Jadwal Festival</h3>
+          <p class="section-desc">
+            Rencanakan waktumu agar tidak ketinggalan aksi panggung favoritmu.
+          </p>
+
+          <table border="0" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th>Waktu</th>
+                <th>Aktivitas / Artis</th>
+                <th>Lokasi Stage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">Hari 1 — 15 Juni 2026</td>
+              </tr>
+              <tr>
+                <td>14:00 - 14:30</td>
+                <td>Opening Ceremony</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>14:30 - 15:30</td>
+                <td>Hindia</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>15:30 - 16:30</td>
+                <td>Bernadya</td>
+                <td><span class="stage-badge">Side Stage</span></td>
+              </tr>
+              <tr>
+                <td>16:30 - 17:30</td>
+                <td colspan="2">Waktu Istirahat / Breaktime</td>
+              </tr>
+              <tr>
+                <td>17:00 - 18:00</td>
+                <td>Local Indies Showcase</td>
+                <td><span class="stage-badge">Chill Zone</span></td>
+              </tr>
+
+              <tr>
+                <td colspan="3">Hari 2 — 16 Juni 2026</td>
+              </tr>
+              <tr>
+                <td>14:00 - 15:00</td>
+                <td>Pamungkas</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>15:00 - 16:00</td>
+                <td>Juice Luicy</td>
+                <td><span class="stage-badge">Side Stage</span></td>
+              </tr>
+              <tr>
+                <td>16:00 - 16:30</td>
+                <td colspan="2">Waktu Istirahat / Breaktime</td>
+              </tr>
+              <tr>
+                <td>16:30 - 17:00</td>
+                <td>Acoustic Session</td>
+                <td><span class="stage-badge">Chill Zone</span></td>
+              </tr>
+
+              <tr>
+                <td colspan="3">Hari 3 — 17 Juni 2026</td>
+              </tr>
+              <tr>
+                <td>14:00 - 15:00</td>
+                <td>Nadin Amizah</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>14:00 - 16:00</td>
+                <td>Feast</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>16:00 - 16:30</td>
+                <td colspan="2">Waktu Istirahat / Breaktime</td>
+              </tr>
+              <tr>
+                <td>16:30 - 17:00</td>
+                <td>Indies Rock</td>
+                <td><span class="stage-badge">Chill Zone</span></td>
+              </tr>
+              <tr>
+                <td>17:30 - 19:00</td>
+                <td>Feast (Encore)</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+              <tr>
+                <td>19:30 - 20:00</td>
+                <td>Closing Ceremony & Fireworks</td>
+                <td><span class="stage-badge">Main Stage</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2.5 Section Tickets -->
+      <section id="tickets">
+        <div class="fade-up" style="max-width: 600px; margin: 0 auto">
+          <h3 style="text-align: center">Beli Tiketmu</h3>
+          <p class="section-desc" style="text-align: center">
+            Isi data diri di bawah ini untuk melakukan reservasi tiket.
+          </p>
+
+          <form>
+            <label for="fullname">Nama Lengkap</label>
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              required
+              autocomplete="off"
+              placeholder="Contoh: Budi Santoso"
+            />
+
+            <label for="email">Alamat Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              autocomplete="off"
+              placeholder="budi@email.com"
+            />
+
+            <label for="phone">Nomor Telepon (WhatsApp)</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              required
+              autocomplete="off"
+              placeholder="0812xxxxxx"
+            />
+
+            <label>Tipe Tiket</label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="ticket_type" id="Regular" checked />
+                <span>Regular (Rp. 500.000)</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="ticket_type" id="vip" />
+                <span>VIP (Rp. 1.000.000)</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="ticket_type" id="vvip" />
+                <span>VVIP (Rp. 3.000.000)</span>
+              </label>
+            </div>
+
+            <label for="quantity">Jumlah Tiket</label>
+            <input
+              type="number"
+              name="quantity"
+              id="quantity"
+              min="1"
+              max="10"
+              value="1"
+            />
+
+            <label>Pilihan Hari (Day Pass)</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="days1" id="days1" />
+                <span>Hari 1 (15 Juni) - Hindia & Bernadya</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="days2" id="days2" />
+                <span>Hari 2 (16 Juni) - Pamungkas & Juice Luicy</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="days3" id="days3" />
+                <span>Hari 3 (17 Juni) - Nadin Amizah & Feast</span>
+              </label>
+            </div>
+
+            <button type="submit">Lanjutkan Pembayaran</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 2.6 Section Gallery (SLIDER) -->
+      <section id="gallery">
+        <div class="fade-up">
+          <h3>Sorotan 2025</h3>
+          <p class="section-desc">
+            Momen-momen tak terlupakan dari WPU StreamFest edisi tahun lalu.
+          </p>
+          <div class="slider-container">
+            <button
+              class="slider-btn prev"
+              onclick="scrollSlider('gallery-slider', -344)"
+            >
+              &#10094;
+            </button>
+            <ul class="slider" id="gallery-slider">
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=500&q=80"
+                    alt="Concert 1"
+                  />
+                  <figcaption><p>Crowd Vibes at Main Stage</p></figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1470229722913-7c092bba85f1?auto=format&fit=crop&w=500&q=80"
+                    alt="Concert 2"
+                  />
+                  <figcaption><p>Neon Lights Show</p></figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1533174000255-16fbcb781079?auto=format&fit=crop&w=500&q=80"
+                    alt="Concert 3"
+                  />
+                  <figcaption><p>Indie Rock Session</p></figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=500&q=80"
+                    alt="Concert 4"
+                  />
+                  <figcaption><p>Festival Fireworks</p></figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure>
+                  <img
+                    src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80"
+                    alt="Concert 5"
+                  />
+                  <figcaption><p>DJ Set at Side Stage</p></figcaption>
+                </figure>
+              </li>
+            </ul>
+            <button
+              class="slider-btn next"
+              onclick="scrollSlider('gallery-slider', 344)"
+            >
+              &#10095;
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 3. Footer -->
+    <footer>
+      <p>&copy; 2026 | Neon Nights Music Festival</p>
+      <p>
+        Ikuti Kami :
+        <a href="#">Instagram</a> &nbsp;|&nbsp;
+        <a href="#">Facebook</a> &nbsp;|&nbsp;
+        <a href="#">Twitter</a>
+      </p>
+      <p style="margin-top: 10px; font-size: 13px">
+        Hubungi kami :
+        <a href="mailto:hello@wpustreamfest.com">hello@wpustreamfest.com</a>
+      </p>
+    </footer>
+
+    <!-- =========================================
+         JAVASCRIPT (Diperbarui dengan Auto Slider)
+         ========================================= -->
+    <script>
+      // Fungsi untuk menggeser slider (Digunakan oleh tombol Panah)
+      function scrollSlider(sliderId, scrollOffset) {
+        const slider = document.getElementById(sliderId);
+        if (slider) slider.scrollBy({ left: scrollOffset, behavior: "smooth" });
+      }
+
+      // Fungsi untuk Auto Scroll
+      function autoScroll(sliderId, offset) {
+        const slider = document.getElementById(sliderId);
+        if (!slider) return;
+
+        // Cek jika sudah mencapai ujung kanan (dikurangi 10px untuk toleransi layar)
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+          // Jika sudah di ujung, kembali ke awal
+          slider.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Jika belum, teruskan geser ke kanan
+          slider.scrollBy({ left: offset, behavior: "smooth" });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- 1. SETTING INTERVAL AUTO SLIDER SETIAP 2 DETIK (2000 ms) ---
+        let lineupTimer = setInterval(
+          () => autoScroll("lineup-slider", 344),
+          2000,
+        );
+        let galleryTimer = setInterval(
+          () => autoScroll("gallery-slider", 344),
+          2000,
+        );
+
+        // --- 2. FITUR JEDA (PAUSE) SAAT DI-HOVER ---
+        const lineupContainer = document.getElementById("lineup-slider");
+        const galleryContainer = document.getElementById("gallery-slider");
+
+        if (lineupContainer) {
+          lineupContainer.addEventListener("mouseenter", () =>
+            clearInterval(lineupTimer),
+          );
+          lineupContainer.addEventListener("mouseleave", () => {
+            lineupTimer = setInterval(
+              () => autoScroll("lineup-slider", 344),
+              2000,
+            );
+          });
+        }
+
+        if (galleryContainer) {
+          galleryContainer.addEventListener("mouseenter", () =>
+            clearInterval(galleryTimer),
+          );
+          galleryContainer.addEventListener("mouseleave", () => {
+            galleryTimer = setInterval(
+              () => autoScroll("gallery-slider", 344),
+              2000,
+            );
+          });
+        }
+
+        // --- 3. ANIMASI FADE-UP KETIKA SCROLL ---
+        const fadeElements = document.querySelectorAll(".fade-up");
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        fadeElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
